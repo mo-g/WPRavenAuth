@@ -15,7 +15,6 @@ namespace WPRavenAuth;
 
 require_once(ABSPATH . '/wp-settings.php');
 require_once(ABSPATH . WPINC . '/pluggable.php');
-require_once(ABSPATH . WPINC . '/registration.php');
 
 if(!defined('DS'))
     define('DS', '/');
@@ -118,7 +117,7 @@ class Raven {
 			}
             
             $user = $this->getWpUser($username);
-            wp_set_auth_cookie( $user->id, false, '' );
+            wp_set_auth_cookie( $user->ID, false, '' );
             do_action('wp_login', $user->user_login, $user);
             
             session_start();
