@@ -103,7 +103,8 @@ class Raven
         $email = $username . '@cam.ac.uk';
 
         if (function_exists('get_user_by') && function_exists('wp_create_user')) {
-            if (!$this->userExists($username)) {
+            $registration = !$this->userExists($username);
+            if ($registration) {
                 // User is not in the WordPress database
                 // they passed Raven and so are authorized
                 // add them to the database (password field is arbitrary, but must
@@ -123,11 +124,13 @@ class Raven
 
             session_start();
 
-            if (isset($_SESSION["raven_redirect_to"])) {
-                wp_safe_redirect($_SESSION["raven_redirect_to"]);
-                unset($_SESSION["raven_redirect_to"]);
-            } else
-                wp_safe_redirect(admin_url());
+            $redirect_url = $_SESSION["raven_redirect_to"] ?? admin_url();
+            unset($_SESSION["raven_redirect_to"]);
+
+            if ($registration)
+                $redirect_url = apply_filters('registration_redirect', $redirect_url);
+
+            wp_safe_redirect($redirect_url);
         } else {
             throw new AuthException('Could not load user data');
         }
