@@ -5,16 +5,15 @@
 
     @license BSD 3-Clause http://opensource.org/licenses/BSD-3-Clause
     @author  Gideon Farrell <me@gideonfarrell.co.uk>, Conor Burgess <Burgess.Conor@gmail.com>
-    @url     https://github.com/gfarrell/WPRavenAuth
+    @url     https://github.com/mo-g/WPRavenAuth
  
     Plugin Name: WPRavenAuth
-    Plugin URI: https://github.com/gfarrell/WPRavenAuth
+    Plugin URI: https://github.com/mo-g/WPRavenAuth
     Description: Replace wordpress login with Raven authentication.
-    Version: 1.0.0
+    Version: 1.0.1
     Author: Gideon Farrell <me@gideonfarrell.co.uk>, Conor Burgess <Burgess.Conor@gmail.com>
- 
  */
-    
+
 namespace WPRavenAuth {
 
 // Some quickly bootstrapped definitions

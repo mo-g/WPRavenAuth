@@ -1,30 +1,19 @@
 WPRavenAuth - Raven authentication for Wordpress
 ================================================
 
-:warning: As per [#59](https://github.com/gfarrell/WPRavenAuth/issues/59) this project is now being maintained by [@mo-g](https://github.com/mo-g) and can be found at [mo-g/WPRavenAuth](https://github.com/mo-g/WPRavenAuth). :warning:
+WPRavenAuth is a Wordpress plugin for authenticating University of Cambridge network ("Raven") accounts. 
 
-Version: 0.1.1
+Created by [Gideon Farrell](https://github.com/gfarrell/) and [Connor Burgess](https://github.com/Burgch) this project is now being maintained by [@mo-g](https://github.com/mo-g) until such a time as it can adequately be replaced with modern standards.
+
+Version: 1.0.1
 License: [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
-
-License
--------
-
-Copyright (c) 2012, Gideon Farrell <me@gideonfarrell.co.uk>
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
-Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-Neither the name of the <ORGANIZATION> nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 Requirements
 ------------
 
 WPRavenAuth requires hosting *within the University of Cambridge network*, so that it may perform LDAP lookups, which is what we use to determine College and so on. Other than that it can run on any webserver (it doesn't require `mod_ucam_webauth`).
 
-The plugin does require PHP > 5.3 because it uses the namespace construct, which was introduced in PHP 5.3.
+The plugin does require PHP > 5.3 because it uses the namespace construct, which was introduced in PHP 5.3. Recent testing has only been on [supported versions](https://www.php.net/supported-versions.php) of PHP, currently 7.4 to 8.1.
 
 Installation
 ------------
