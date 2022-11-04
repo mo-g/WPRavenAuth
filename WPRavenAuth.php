@@ -10,7 +10,7 @@
     Plugin Name: WPRavenAuth
     Plugin URI: https://github.com/mo-g/WPRavenAuth
     Description: Replace wordpress login with Raven authentication.
-    Version: 1.0.1
+    Version: 1.0.2
     Author: Gideon Farrell <me@gideonfarrell.co.uk>, Conor Burgess <Burgess.Conor@gmail.com>
  */
 

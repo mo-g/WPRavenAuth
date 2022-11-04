@@ -5,7 +5,7 @@ WPRavenAuth is a Wordpress plugin for authenticating University of Cambridge net
 
 Created by [Gideon Farrell](https://github.com/gfarrell/) and [Connor Burgess](https://github.com/Burgch) this project is now being maintained by [@mo-g](https://github.com/mo-g) until such a time as it can adequately be replaced with modern standards.
 
-Version: 1.0.1
+Version: 1.0.2
 License: [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
 Requirements
@@ -18,7 +18,7 @@ The plugin does require PHP > 5.3 because it uses the namespace construct, which
 Installation
 ------------
 
-To install the plugin, cd to the `wp-content/plugins` directory, and then run `git clone --recursive https://github.com/gfarrell/WPRavenAuth.git`.
+To install the plugin, cd to the `wp-content/plugins` directory, and then run `git clone --recursive https://github.com/mo-g/WPRavenAuth.git`. I would also recommend checking out the latest stable tag.
 
 In the `WPRavenAuth` directory, create a directory called "keys", and add the Raven public key/cert. (Filenames should be `2` and `2.crt` instead of `pubkey2` and `pubkey2.crt` as they are commonly distributed).
 
