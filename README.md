@@ -8,6 +8,12 @@ Created by [Gideon Farrell](https://github.com/gfarrell/) and [Connor Burgess](h
 Version: 1.0.2
 License: [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
+---
+
+**Warning**: The Legacy Raven Authentication Service on which this plugin depends will be decommissioned in early 2024. Any service using the plugin must transition to a native OAuth2 + LDAP based access control system before that time.
+
+---
+
 Requirements
 ------------
 
