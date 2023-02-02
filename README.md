@@ -5,7 +5,7 @@ WPRavenAuth is a Wordpress plugin for authenticating University of Cambridge net
 
 Created by [Gideon Farrell](https://github.com/gfarrell/) and [Connor Burgess](https://github.com/Burgch) this project is now being maintained by [@mo-g](https://github.com/mo-g) until such a time as it can adequately be replaced with modern standards.
 
-Version: 1.0.2
+Version: 1.0.3
 License: [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
 ---
@@ -43,7 +43,7 @@ The plugin will replace the login system with a Raven login page - if a user who
 
 NB: You can access the original Wordpress Login by adding `?super-admin=1` to your login url (e.g. `http://www.mywebsite.com/wp-login.php?super-admin=1`).
 
-If any existing users are set up with their univeristy email addresses *@cam.ac.uk* for the email field, they will never be able to log in with the new system (unless their username is also their crsid in lower case). If such users exist, they should be deleted, or if their username is NOT their crsid, they can change the email associated with their user to an external (i.e. non *@cam.ac.uk*) address. This should be done before activating this plugin.
+If any existing users are set up with their university email addresses *@cam.ac.uk* for the email field, they will never be able to log in with the new system (unless their username is also their crsid in lower case). If such users exist, they should be deleted, or if their username is NOT their crsid, they can change the email associated with their user to an external (i.e. non *@cam.ac.uk*) address. This should be done before activating this plugin.
 
 By default, the newly created users will have *Subscriber* permissions. To promote a user to another permission level, find their account in the normal Wordpress *Users* section and modify it in the normal manner.
 
