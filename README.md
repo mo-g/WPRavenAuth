@@ -19,20 +19,18 @@ Requirements
 
 WPRavenAuth requires hosting *within the University of Cambridge network*, so that it may perform LDAP lookups, which is what we use to determine College and so on. Other than that it can run on any webserver (it doesn't require `mod_ucam_webauth`).
 
-The plugin does require PHP > 5.3 because it uses the namespace construct, which was introduced in PHP 5.3. Recent testing has only been on [supported versions](https://www.php.net/supported-versions.php) of PHP, currently 7.4 to 8.1.
+Recent testing has only been on [supported versions](https://www.php.net/supported-versions.php) of PHP. For what limited value of "support" that you'll get from the issues page, assume the only supported version is PHP 8.1.
 
 Installation
 ------------
 
-To install the plugin, cd to the `wp-content/plugins` directory, and then run `git clone --recursive https://github.com/mo-g/WPRavenAuth.git`. I would also recommend checking out the latest stable tag.
+The plugin has a single pre-requisite: [WPEngine Advanced Custom Fields](https://en-gb.wordpress.org/plugins/advanced-custom-fields/). Either the pro or free versions will work fine.
+
+To install the plugin, cd to the `wp-content/plugins` directory, and then run `git clone https://github.com/mo-g/WPRavenAuth.git WPRavenAuth`. I would also recommend checking out the latest stable tag.
 
 In the `WPRavenAuth` directory, create a directory called "keys", and add the Raven public key/cert. (Filenames should be `2` and `2.crt` instead of `pubkey2` and `pubkey2.crt` as they are commonly distributed).
 
 Current canonical source for the keys is https://wiki.cam.ac.uk/raven/Raven_keys however there is a mirror at https://w3.charliejonas.co.uk/mirror/raven/keys/ in case there is a change of availability at the canonical source - follow best practice about validating the keys. Previous source https://raven.cam.ac.uk/project/keys/ still contains the key, but not the cert.
-
-N.B. If you choose to install by downloading a zip from GitHub, it will not include the submodule for ACF (in `app/lib`), and you will need to download the zip for that repository and unpack it in the correct location manually.
-
-Also N.B. That you may need to modify the `lib/advanced-custom-fields` directory to give it 775 permissions before the custom fields will function and display correctly.
 
 Once you've done that, activate the plugin and go to the WPRavenAuth settings in the Wordpress Dashboard (under Settings). Here you can configure which colleges should be available to select for individual post or page visibility. You MUST also change the cookie key to be a long random string with alphanumeric characters and punctuation, which is used for preventing malicious attacks via cookie tampering. You MUST do this immediately after plugin activation or the plugin will continue to throw a warning.
 
@@ -53,4 +51,4 @@ To use the visibility settings, you can select the desired levels of visibility 
 
 The plugin can also be used in combination with other visibility plugins, such as for menu item visibility, with something like the following as the visibility criterion:
 
-    ((is_user_logged_in()) && (WPRavenAuth\Ibis::isMemberOfCollege(WPRavenAuth\Ibis::getPerson(wp_get_current_user()->user_login), 'KINGS')))
+    ((is_user_logged_in()) && (WPRavenAuth\Ibis::isMemberOfCollege(WPRavenAuth\Ibis::getPerson(wp_get_current_user()->user_login), 'EDMUND')))
