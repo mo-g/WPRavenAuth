@@ -21,10 +21,16 @@ define('DS', '/');
 if (!defined('WPRavenAuth_dir'))
 define('WPRavenAuth_dir', substr(__FILE__, 0, strpos(__FILE__, 'app') - 1));
 
-// Include ACF in lite mode
-global $acf;
- 
-if( !$acf )
+if ( ! function_exists( 'is_plugin_active' ) ) {
+    include_once ABSPATH . 'wp-admin/includes/plugin.php';
+}
+
+// Check if ACF PRO is active
+if ( is_plugin_active( 'advanced-custom-fields-pro/acf.php' ) )
+{
+    // Abort all bundling, ACF PRO plugin takes priority
+    return;
+} else
 {
     define( 'ACF_LITE' , true );
     include_once(WPRavenAuth_dir . '/app/lib/advanced-custom-fields/acf.php');

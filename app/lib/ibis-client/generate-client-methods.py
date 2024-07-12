@@ -896,7 +896,8 @@ def generate_python_method(cls, method):
                                       "method_path": path,
                                       "result": result }
 
-PYTHON_CLASS_TEMPLATE = '''class %(class_name)s:
+PYTHON_CLASS_TEMPLATE = '''
+class %(class_name)s:
     """
 %(class_docs)s
     """

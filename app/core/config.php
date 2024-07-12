@@ -23,9 +23,6 @@ class Config {
      */
     private $cfg = array(
         // default options
-        'cookie'     => 'WPRavenAuth',
-        'cookie_key' => 'rand0m+alphanum3r!icstr!n&',
-        'salt'       => '',
         'colleges'   => '',
     );
 
