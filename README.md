@@ -1,16 +1,18 @@
-WPRavenAuth - Raven authentication for Wordpress
+WPRavenThor - Raven Authorization for Wordpress
 ================================================
 
-WPRavenAuth is a Wordpress plugin for authenticating University of Cambridge network ("Raven") accounts. 
+WPRavenAuth is a Wordpress plugin for authorizing University of Cambridge network ("Raven") accounts. 
 
-Created by [Gideon Farrell](https://github.com/gfarrell/) and [Connor Burgess](https://github.com/Burgch) this project is now being maintained by [@mo-g](https://github.com/mo-g) until such a time as it can adequately be replaced with modern standards.
+Created by [Gideon Farrell](https://github.com/gfarrell/) and [Connor Burgess](https://github.com/Burgch) this project is now being maintained by [@mo-g](https://github.com/mo-g) without the legacy authentication options, to give page-level access control via IBIS while using OIDC Connect Generic for AUthentication.
 
-Version: 1.0.3
+If you need the old WPRavenAUth plugin for any reason, if is archived as the ["AuthenticationArchive" branch](https://github.com/mo-g/WPRavenAuth/tree/AuthenticationArchive).
+
+Version: 1.0.4a0
 License: [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
 ---
 
-**Warning**: The Legacy Raven Authentication Service on which this plugin depends will be decommissioned in early 2024. Any service using the plugin must transition to a native OAuth2 + LDAP based access control system before that time.
+**Backstory**: The Legacy Raven Authentication Service on which this plugin depends will be decommissioned in Q3 2024. Spinning this plugin off to provide the Authorization functions features only allows continuity of access control while changing the login system.
 
 ---
 
@@ -38,14 +40,6 @@ Note that the `php_override.ini` file included in the root of the plugin directo
 
 Usage
 -----
-
-The plugin will replace the login system with a Raven login page - if a user who has never used your site before logs in with their Raven account, a new Wordpress account will be automatically created for them (with their CRSID as the username of the account and their lookup visible name as their display name).
-
-NB: You can access the original Wordpress Login by adding `?super-admin=1` to your login url (e.g. `http://www.mywebsite.com/wp-login.php?super-admin=1`).
-
-If any existing users are set up with their university email addresses *@cam.ac.uk* for the email field, they will never be able to log in with the new system (unless their username is also their crsid in lower case). If such users exist, they should be deleted, or if their username is NOT their crsid, they can change the email associated with their user to an external (i.e. non *@cam.ac.uk*) address. This should be done before activating this plugin.
-
-By default, the newly created users will have *Subscriber* permissions. To promote a user to another permission level, find their account in the normal Wordpress *Users* section and modify it in the normal manner.
 
 To use the visibility settings, you can select the desired levels of visibility for any page or post individually. These options should appear as custom fields on every post or page. You can also configure the error message which is displayed to users with insufficient privilidges to view the content.
 
