@@ -20,8 +20,8 @@ class OptionsPage
     {
         // This page will be under "Settings"
         add_options_page(
-            'Raven Auth Admin', 
-            'WPRavenAuth', 
+            'Lookup Auth Admin', 
+            'WPRavenThor', 
             'edit_users', 
             'wpravenauth-admin', 
             array( $this, 'create_admin_page' )
@@ -70,7 +70,7 @@ class OptionsPage
         // Set class property
         ?>
         <div class="wrap">
-            <h2>Raven Auth Settings</h2>
+            <h2>Lookup Auth Settings</h2>
             <form method="post" action="options.php">
             <?php
                 // This prints out all hidden setting fields
@@ -95,26 +95,10 @@ class OptionsPage
 
         add_settings_section(
             'raven-section', // ID
-            'Plugin Settings', // Title
+            'Settings for Lookup Authorization', // Title
             array( $this, 'print_section_info' ), // Callback
             'wpravenauth-admin' // Page
         );  
-
-        add_settings_field(
-            'cookie', // ID
-            'Cookie Name', // Title 
-            array( $this, 'cookie_callback' ), // Callback
-            'wpravenauth-admin', // Page
-            'raven-section' // Section           
-        );      
-
-        add_settings_field(
-            'cookie-key', // ID
-            'Cookie Key', // Title
-            array( $this, 'cookie_key_callback' ), // Callback
-            'wpravenauth-admin', // Page
-            'raven-section' // Section
-        );
         
         add_settings_field(
             'colleges', // ID
@@ -130,32 +114,9 @@ class OptionsPage
      */
     public function print_section_info()
     {
-        print 'Enter your settings below, make cookie key really random!';
+        print 'Please select what institutions you want to allow to see restricted posts.';
     }
 
-    /** 
-     * Get the settings option array and print one of its values
-     */
-    public function cookie_callback()
-    {
-        printf(
-            '<input type="text" id="cookie" name="%s[cookie]" value="%s" />',
-               Config::key(),
-               Config::get('cookie')
-        );
-    }
-
-    /** 
-     * Get the settings option array and print one of its values
-     */
-    public function cookie_key_callback()
-    {
-        printf(
-            '<input type="text" id="cookie_key" name="%s[cookie_key]" value="%s" />',
-               Config::key(),
-               Config::get('cookie_key')
-        );
-    }
     
     /** 
      * Get the settings option array and print one of its values

@@ -63,7 +63,7 @@ class IbisClientConnection implements ClientConnection
 
     /**
      * Create an IbisClientConnection to the Lookup/Ibis test web service API
-     * at {@link https://lookup-test.csx.cam.ac.uk/}.
+     * at {@link https://lookup-test.srv.uis.cam.ac.uk/}.
      *
      * The connection is initially anonymous, but this may be changed using
      * {@link setUsername()} and {@link setPassword()}.
@@ -76,7 +76,7 @@ class IbisClientConnection implements ClientConnection
      */
     public static function createTestConnection()
     {
-        return new IbisClientConnection("https://lookup-test.csx.cam.ac.uk/", true);
+        return new IbisClientConnection("https://lookup-test.srv.uis.cam.ac.uk/", true);
     }
 
     /**

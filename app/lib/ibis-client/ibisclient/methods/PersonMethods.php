@@ -228,7 +228,9 @@ class PersonMethods
      *
      * ``[ HTTP: GET /api/v1/person/list?crsids=... ]``
      *
-     * @param string $crsids [required] A comma-separated list of identifiers.
+     * @param string $crsids [required] A comma-separated list of identifiers. The name
+     * of the query parameter reflects a time when only crsids were used with
+     * lookup. Alternate schemes can be specified as noted above.
      * @param string $fetch [optional] A comma-separated list of any additional
      * attributes or references to fetch.
      *
@@ -481,9 +483,8 @@ class PersonMethods
      * ``[ HTTP: GET /api/v1/person/{scheme}/{identifier} ]``
      *
      * @param string $scheme [required] The person identifier scheme. Typically this
-     * should be ``"crsid"``, but other identifier schemes may be
-     * available in the future, such as ``"usn"`` or
-     * ``"staffNumber"``.
+     * should be ``"crsid"``, but other identifier schemes
+     * such as ``"usn"`` or ``"staffNumber"`` may be available.
      * @param string $identifier [required] The identifier of the person to fetch
      * (typically their CRSid).
      * @param string $fetch [optional] A comma-separated list of any additional

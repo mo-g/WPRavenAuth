@@ -176,7 +176,7 @@ class InstitutionMethods
      * method may fetch to around 700.
      *
      * NOTE: The institutions returned may include cancelled institutions.
-     * It is the caller's repsonsibility to check their cancelled flags.
+     * It is the caller's responsibility to check their cancelled flags.
      *
      * ``[ HTTP: GET /api/v1/inst/list?instids=... ]``
      *
@@ -393,7 +393,7 @@ class InstitutionMethods
      * to fetch additional attributes or references of the institution.
      *
      * NOTE: The institution returned may be a cancelled institution. It is
-     * the caller's repsonsibility to check its cancelled flag.
+     * the caller's responsibility to check its cancelled flag.
      *
      * ``[ HTTP: GET /api/v1/inst/{instid} ]``
      *
@@ -543,6 +543,56 @@ class InstitutionMethods
         if (isset($result->error))
             throw new IbisException($result->error);
         return $result->institution->contactRows;
+    }
+
+    /**
+     * Create a group owned by an institution.
+     *
+     * A new group will be created with the institution being its only owner.
+     *
+     * Only limited attributes (short hyphenated name, title and description) of
+     * the new group can be specified when creating a group. The GroupMethod's
+     * update methods be used to modify other attributes.
+     * The new group will have membership visibility of 'university' and be managed
+     * by the same groups as its owning institution.
+     *
+     * ``[ HTTP: POST /api/v1/inst/{instid}/create-group ]``
+     *
+     * @param string $instid [required] The ID of the institution.
+     * @param string $name [required] A short hyphenated name for the new group. Must be in lower case and
+     * begin with the instid followed by a hyphen.
+     * @param string $title [required] A title for the new group.
+     * @param string $description [required] A more detailed description of the new group.
+     * @param string $managedBy [optional] The sole group that will manage group data for the new group.
+     * If not provided, the new group will be managed by the same groups as its owning institution.
+     * @param string $commitComment [recommended] A short textual description of
+     * the change made (will be visible on the history tab in the web
+     * application).
+     *
+     * @return IbisGroup The newly created group.
+     */
+    public function createGroup($instid,
+                                $name,
+                                $title,
+                                $description,
+                                $managedBy=null,
+                                $commitComment=null)
+    {
+        $pathParams = array("instid" => $instid);
+        $queryParams = array();
+        $formParams = array("name"          => $name,
+                            "title"         => $title,
+                            "description"   => $description,
+                            "managedBy"     => $managedBy,
+                            "commitComment" => $commitComment);
+        $result = $this->conn->invokeMethod("POST",
+                                            'api/v1/inst/%1$s/create-group',
+                                            $pathParams,
+                                            $queryParams,
+                                            $formParams);
+        if (isset($result->error))
+            throw new IbisException($result->error);
+        return $result->group;
     }
 
     /**

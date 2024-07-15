@@ -42,7 +42,7 @@ require_once dirname(__FILE__) . "/../client/IbisException.php";
  *   group, including members of groups included by the group, and groups
  *   included by those groups, and so on.
  *
- * * ``"direct_members"`` - fetches all the poeple who are direct
+ * * ``"direct_members"`` - fetches all the people who are direct
  *   members of the group, not taking into account any included groups.
  *
  * * ``"members_of_inst"`` - if the group is a membership group for an
@@ -150,7 +150,7 @@ class GroupMethods
      * but probably fewer by name, depending on the group name lengths.
      *
      * NOTE: The groups returned may include cancelled groups. It is the
-     * caller's repsonsibility to check their cancelled flags.
+     * caller's responsibility to check their cancelled flags.
      *
      * ``[ HTTP: GET /api/v1/group/list?groupids=... ]``
      *
@@ -350,7 +350,7 @@ class GroupMethods
      * additional attributes or references of the group.
      *
      * NOTE: The group returned may be a cancelled group. It is the caller's
-     * repsonsibility to check its cancelled flag.
+     * responsibility to check its cancelled flag.
      *
      * ``[ HTTP: GET /api/v1/group/{groupid} ]``
      *
@@ -551,5 +551,33 @@ class GroupMethods
         if (isset($result->error))
             throw new IbisException($result->error);
         return $result->people;
+    }
+
+    /**
+     * Get a signed JSON Web Token (JWT) with the group as subject and
+     * specified audience, only if authorized user/group has permission to edit
+     * the group.
+     *
+     * ``[ HTTP: GET /api/v1/group/{groupid}/token?aud=... ]``
+     *
+     * @param string $groupid [required] The ID of the group.
+     * @param string $aud [required] Audience for the signed JWT.
+     *
+     * @return String The serialized JWT
+     */
+    public function getToken($groupid,
+                             $aud)
+    {
+        $pathParams = array("groupid" => $groupid);
+        $queryParams = array("aud" => $aud);
+        $formParams = array();
+        $result = $this->conn->invokeMethod("GET",
+                                            'api/v1/group/%1$s/token',
+                                            $pathParams,
+                                            $queryParams,
+                                            $formParams);
+        if (isset($result->error))
+            throw new IbisException($result->error);
+        return $result->value;
     }
 }

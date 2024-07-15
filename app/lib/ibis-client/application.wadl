@@ -70,7 +70,7 @@
  * &lt;li&gt;{@code "all_members"} - fetches all the people who are members of the
  * group, including members of groups included by the group, and groups
  * included by those groups, and so on.&lt;/li&gt;
- * &lt;li&gt;{@code "direct_members"} - fetches all the poeple who are direct
+ * &lt;li&gt;{@code "direct_members"} - fetches all the people who are direct
  * members of the group, not taking into account any included groups.&lt;/li&gt;
  * &lt;li&gt;{@code "members_of_inst"} - if the group is a membership group for an
  * institution, this fetches that institution.&lt;/li&gt;
@@ -153,7 +153,7 @@
      * but probably fewer by name, depending on the group name lengths.
      * &lt;p&gt;
      * NOTE: The groups returned may include cancelled groups. It is the
-     * caller's repsonsibility to check their cancelled flags.
+     * caller's responsibility to check their cancelled flags.
      *
      * @param groupids [required] A comma-separated list of group IDs or
      * group names (may be a mix of both).
@@ -329,7 +329,7 @@
      * additional attributes or references of the group.
      * &lt;p&gt;
      * NOTE: The group returned may be a cancelled group. It is the caller's
-     * repsonsibility to check its cancelled flag.
+     * responsibility to check its cancelled flag.
      *
      * @param groupid [required] The ID or name of the group to fetch. This
      * may be either the numeric ID or the short hyphenated group name (for
@@ -510,6 +510,31 @@
                     </response>
                 </method>
             </resource>
+            <resource path="{groupid}/token">
+                <param name="groupid" style="template" type="xs:string" javaType="java.lang.String" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <method id="getToken" name="GET" resultField="value:String">
+                    <doc>
+    /**
+     * Get a signed JSON Web Token (JWT) with the group as subject and
+     * specified audience, only if authorized user/group has permission to edit
+     * the group.
+     *
+     * @param groupid [required] The ID of the group.
+     * @param aud [required] Audience for the signed JWT.
+     *
+     * @return The serialized JWT
+     */</doc>
+                    <request>
+                        <param name="aud" style="query" type="xs:string" javaType="java.lang.String" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml"/>
+                        <representation mediaType="application/json"/>
+                        <representation mediaType="text/xml"/>
+                        <representation mediaType="text/x-json"/>
+                    </response>
+                </method>
+            </resource>
         </resource>
         <resource path="/api/v1/inst/" className="InstitutionResource">
             <doc>
@@ -639,7 +664,7 @@
      * method may fetch to around 700.
      * &lt;p&gt;
      * NOTE: The institutions returned may include cancelled institutions.
-     * It is the caller's repsonsibility to check their cancelled flags.
+     * It is the caller's responsibility to check their cancelled flags.
      *
      * @param instids [required] A comma-separated list of instids.
      * @param fetch [optional] A comma-separated list of any additional
@@ -829,7 +854,7 @@
      * to fetch additional attributes or references of the institution.
      * &lt;p&gt;
      * NOTE: The institution returned may be a cancelled institution. It is
-     * the caller's repsonsibility to check its cancelled flag.
+     * the caller's responsibility to check its cancelled flag.
      *
      * @param instid [required] The ID of the institution to fetch.
      * @param fetch [optional] A comma-separated list of any additional
@@ -955,6 +980,51 @@
      */</doc>
                     <request>
                         <param name="fetch" style="query" type="xs:string" javaType="java.util.List" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml"/>
+                        <representation mediaType="application/json"/>
+                        <representation mediaType="text/xml"/>
+                        <representation mediaType="text/x-json"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="{instid}/create-group">
+                <param name="instid" style="template" type="xs:string" javaType="java.lang.String" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <method id="createGroup" name="POST" resultField="group:IbisGroup">
+                    <doc>
+    /**
+     * Create a group owned by an institution.
+     * &lt;p&gt;
+     * A new group will be created with the institution being its only owner.
+     * &lt;p&gt;
+     * Only limited attributes (short hyphenated name, title and description) of
+     * the new group can be specified when creating a group. The GroupMethod's
+     * update methods be used to modify other attributes.
+     * The new group will have membership visibility of 'university' and be managed
+     * by the same groups as its owning institution.
+     *
+     * @param instid [required] The ID of the institution.
+     * @param name [required] A short hyphenated name for the new group. Must be in lower case and
+     * begin with the instid followed by a hyphen.
+     * @param title [required] A title for the new group.
+     * @param description [required] A more detailed description of the new group.
+     * @param managedBy [optional] The sole group that will manage group data for the new group.
+     * If not provided, the new group will be managed by the same groups as its owning institution.
+     * @param commitComment [recommended] A short textual description of
+     * the change made (will be visible on the history tab in the web
+     * application).
+     *
+     * @return The newly created group.
+     */</doc>
+                    <request>
+                        <representation mediaType="application/x-www-form-urlencoded">
+                            <param name="name" style="query" type="xs:string" javaType="java.lang.String" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                            <param name="title" style="query" type="xs:string" javaType="java.lang.String" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                            <param name="description" style="query" type="xs:string" javaType="java.lang.String" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                            <param name="managedBy" style="query" type="xs:string" javaType="java.lang.String" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                            <param name="commitComment" style="query" type="xs:string" javaType="java.lang.String" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                        </representation>
                     </request>
                     <response>
                         <representation mediaType="application/xml"/>
@@ -1303,7 +1373,9 @@
      * NOTE: The people returned may include cancelled people. It is the
      * caller's repsonsibility to check their cancelled flags.
      *
-     * @param crsids [required] A comma-separated list of identifiers.
+     * @param crsids [required] A comma-separated list of identifiers. The name
+     * of the query parameter reflects a time when only crsids were used with
+     * lookup. Alternate schemes can be specified as noted above.
      * @param fetch [optional] A comma-separated list of any additional
      * attributes or references to fetch.
      *
@@ -1526,9 +1598,8 @@
      * caller's repsonsibility to check its cancelled flag.
      *
      * @param scheme [required] The person identifier scheme. Typically this
-     * should be {@code "crsid"}, but other identifier schemes may be
-     * available in the future, such as {@code "usn"} or
-     * {@code "staffNumber"}.
+     * should be {@code "crsid"}, but other identifier schemes
+     * such as {@code "usn"} or {@code "staffNumber"} may be available.
      * @param identifier [required] The identifier of the person to fetch
      * (typically their CRSid).
      * @param fetch [optional] A comma-separated list of any additional
