@@ -3,7 +3,7 @@ WPRavenThor - Raven Authorization for Wordpress
 
 WPRavenThor is a Wordpress plugin for authorizing University of Cambridge network ("Raven") accounts for page-level access control. 
 
-Created by [Gideon Farrell](https://github.com/gfarrell/) and [Connor Burgess](https://github.com/Burgch) this project is now being maintained by [@mo-g](https://github.com/mo-g) without the legacy authentication options, to give page-level access control via IBIS while using alternative logon mechanisms for Authentication.
+Created by [Gideon Farrell](https://github.com/gfarrell/) and [Connor Burgess](https://github.com/Burgch) this project is now being maintained by [@mo-g](https://github.com/mo-g) without the legacy authentication options, to give page-level access control based on institution affiliations from the Lookup service via IBIS, while using alternative logon mechanisms for Authentication.
 
 If you need the old WPRavenAuth plugin for any reason, if is archived as the ["AuthenticationArchive" branch](https://github.com/mo-g/WPRavenThor/tree/AuthenticationArchive).
 
@@ -19,7 +19,7 @@ License: [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 Requirements
 ------------
 
-WPRavenThor requires hosting *within the University of Cambridge network*, so that it may perform IBIS lookups, which is what we use to determine College and so on. Other than that it can run on any webserver (it doesn't require `mod_ucam_webauth`).
+WPRavenThor requires hosting *within the University of Cambridge network*, so that it may perform IBIS queries to Lookup, which is what we use to determine College and so on. Other than that it can run on any webserver (it doesn't require `mod_ucam_webauth`).
 
 Recent testing has only been on [supported versions](https://www.php.net/supported-versions.php) of PHP. For what limited value of "support" that you'll get from the issues page, assume the only supported version is PHP 8.1.
 
