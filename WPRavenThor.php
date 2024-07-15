@@ -40,7 +40,6 @@ function setup()
     // Add filters for authentication on pages
     add_filter('the_posts', 'WPRavenAuth\showPost');
     add_filter('get_pages', 'WPRavenAuth\showPost');
-    add_action('wp_login', 'WPRavenAuth\post_login', 10, 2);
 }
 
 // Used to disable unnecessary functions
