@@ -10,7 +10,7 @@
     Plugin Name: WPRavenThor
     Plugin URI: https://github.com/mo-g/WPRavenThor
     Description: Replace wordpress login with Raven authentication.
-    Version: 1.0.4
+    Version: 2.0.0
     Author: Gideon Farrell <me@gideonfarrell.co.uk>, Conor Burgess <Burgess.Conor@gmail.com>, mo-g Gray <10463172+mo-g@users.noreply.github.com>
  */
 
